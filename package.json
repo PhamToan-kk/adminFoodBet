@@ -1,0 +1,62 @@
+{
+  "name": "adminFoodBet",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@gorhom/animated-tabbar": "^2.1.0",
+    "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/picker": "^1.8.1",
+    "@react-navigation/bottom-tabs": "^5.10.6",
+    "@react-navigation/native": "^5.8.6",
+    "@react-navigation/stack": "^5.12.3",
+    "axios": "^0.21.0",
+    "color": "^3.1.3",
+    "d3-shape": "^2.0.0",
+    "formik": "^2.2.2",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "query-string": "^6.13.7",
+    "react": "16.11.0",
+    "react-native": "0.62.2",
+    "react-native-document-picker": "^4.1.0",
+    "react-native-elements": "^3.0.0-alpha.1",
+    "react-native-gesture-handler": "^1.8.0",
+    "react-native-image-picker": "^2.3.4",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-picker-select": "^8.0.2",
+    "react-native-reanimated": "^1.13.1",
+    "react-native-responsive-fontsize": "^0.4.3",
+    "react-native-safe-area-context": "^3.1.8",
+    "react-native-screens": "^2.13.0",
+    "react-native-size-matters": "^0.3.1",
+    "react-native-svg": "^12.1.0",
+    "react-native-vector-icons": "^7.1.0",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "socket.io": "^3.0.0",
+    "socket.io-client": "^2.3.1",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.12.1",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.64.0",
+    "react-test-renderer": "16.11.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
