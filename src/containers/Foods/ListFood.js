@@ -19,7 +19,7 @@ const ListFood = (props) =>
     const [data,setData] = useState([])
     const [isLoading,setIsLoading] = useState(false)
     const [pageCurrent,setPageCurrent] = useState(1)
-    const [foodCount,setFoodCount] = useState()
+    // const [foodCount,setFoodCount] = useState()
     const [refeshing,setRefeshing] = useState(false)
     const limit = 5
     const [maxPage,setMaxpage] = useState()
@@ -32,7 +32,7 @@ const ListFood = (props) =>
         .then((resJosn)=> {
             // console.log('resjson',resJosn)
             setData(data.concat(resJosn.resultFoods))
-            setFoodCount()
+            // setFoodCount()
             setIsLoading(false)
             setRefeshing(false)
             const maxPage = Math.ceil(resJosn.foodcount/5)

@@ -110,6 +110,7 @@ export const Colors = {
     Linear_white4:'rgb(238,238,238)',
     Linear_white5:'rgb(245,245,245)',
     Linear_white6:'rgb(250,250,250)',
+    blueNoti:'rgb(232,243,254)',
 
 
 

@@ -13,13 +13,19 @@ import {
 
     MoveIcon,
 } from '../../components'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Header = (props) => 
 {
+    const{navigation} = props
     return(
     <View style={styles.container}>
-        <FText style={styles.headerTitle}>Orders</FText>
-        <Image style={styles.logo} source={require('../../assets/images/logo.png')} />
+        <FText style={styles.headerTitle}>Order Detail</FText>
+        <TouchableOpacity
+        onPress={()=>navigation.goBack()}
+        >
+            <Image style={styles.backimg} source={require('../../assets/icons/remove.png')} />
+        </TouchableOpacity>
     </View>
 );
 }
@@ -34,9 +40,9 @@ const styles = ScaledSheet.create({
         fontWeight:'700',
         color:Colors.red_fresh
     },
-    logo:{
-        height:'100%',
-        width:'100@s',
+    backimg:{
+        height:'40@s',
+        width:'40@s',
         resizeMode:'contain'
     }
 })

@@ -1,14 +1,33 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { Text, View,Dimensions,Image } from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters'
 import {FText,Morph} from '../../components'
 import {FontSizes,Colors} from '../../theme'
 import {Styles} from '../../styles'
+import {OrderApi} from '../../api/orderApi'
+
 const {width,height} = Dimensions.get('window')
 const Figures = ({
     params,
 }) => 
 {
+    const [orderCount,setOrderCount] = useState()
+    const [totolMoney,setTotalMoney] = useState()
+    const targetCount = 200
+    const targetMoney = 5000
+    const getData = ()=>{
+        OrderApi.getOrderInfo()
+        .then(res=>{
+            setOrderCount(res.orderCount)
+            setTotalMoney(res.totalOrderMoney)
+        })
+        .catch(err=>console.log(err))
+    }
+
+    useEffect(()=>{
+        getData()
+    },[])
+
 return(
     <View style={styles.container}>
         <Morph style={styles.figuresStyle}>
@@ -18,10 +37,10 @@ return(
                     <FText align="center" size={FontSizes.FONT_15} weight="500" color={Colors.red_fresh} >Orders count</FText>
                 </View>
                 <FText style={styles.value}>
-                        450 Orders
+                        {orderCount} Orders
                 </FText>
                 <FText style={styles.target}>
-                        45% target 
+                        {(orderCount/200)*100}% target 
                 </FText>
             </View>
         </Morph>
@@ -32,10 +51,10 @@ return(
                         <FText align="center" size={FontSizes.FONT_15} weight="500" color={Colors.red_fresh} >Total Money</FText>
                     </View>
                     <FText style={styles.value}>
-                            4500 $
+                            {totolMoney} $
                     </FText>
                     <FText style={styles.target}>
-                            45% target 
+                    {(totolMoney/5000)*100}% target 
                     </FText>
                 </View>
         </Morph>

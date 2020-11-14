@@ -1,24 +1,29 @@
 import React from 'react';
-import { Text, View ,StyleSheet} from 'react-native';
+import { Text, View } from 'react-native';
 import { ScaledSheet, } from 'react-native-size-matters';
-import { Colors } from '../../theme';
 import Header from './Header'
-import ListOrders from './ListOrder'
-export const OrderList = (props) => 
+import Order from './Order'
+import {Colors} from '../../theme'
+export const DetailOrder = (props) => 
 {
-    const {navigation} = props
+    const{
+        navigation,
+        route
+    } = props
+    const {item} = route.params
+    console.log('itemm',item)
     return(
     <View style={styles.container}>
         <View style={styles.header}>
-            <Header/>
+            <Header navigation={navigation} />
         </View>
         <View style={styles.listOrders}>
-            <ListOrders navigation={navigation}/>
+            <Order item={item} />
         </View>
     </View>
-)
+);
+
 }
- 
 const styles = ScaledSheet.create({
     container:{
         flex:1,

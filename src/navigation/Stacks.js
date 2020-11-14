@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {
-   AddFood,
-   Login
+  AddFood,
+  Login,
+  DetailOrder
 
+  
   } from '../containers';
   import {createStackNavigator} from '@react-navigation/stack';
 
@@ -32,6 +34,8 @@ import {
         >
             <MainStack.Screen component={TabsNavigator} name={'Tabs'}/>
             <MainStack.Screen component={AddFood} name={'AddFood'} />     
+            <MainStack.Screen component={DetailOrder} name={'DetailOrder'} />     
+
         </MainStack.Navigator>
     )
 }
