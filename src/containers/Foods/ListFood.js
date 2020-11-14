@@ -1,5 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import { Text, View ,FlatList,Image, ActivityIndicator,TouchableOpacity} from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+
 import {ScaledSheet} from 'react-native-size-matters'
 import {
     FText ,
@@ -10,6 +12,7 @@ import {
     MoveIcon
 } from '../../components'
 import {FontSizes,Colors} from '../../theme'
+import {foodApi} from '../../api/foodApi'
 const ListFood = (props) => 
 {
     const { navigation} = props
@@ -17,28 +20,38 @@ const ListFood = (props) =>
     const [isLoading,setIsLoading] = useState(false)
     const [pageCurrent,setPageCurrent] = useState(1)
     const [foodCount,setFoodCount] = useState()
+    const [refeshing,setRefeshing] = useState(false)
     const limit = 5
+    const [maxPage,setMaxpage] = useState()
     const getData = ()=>{
-        const URL = `http://192.168.3.102:3000/foods/getPageFoods?limit=${limit}&page=`+pageCurrent
-        console.log(URL)
-        fetch(URL)
-        .then((res)=>res.json())
+        const params ={
+            page:pageCurrent,
+            limit:5
+        }
+        foodApi.loadFoods(params)
         .then((resJosn)=> {
+            // console.log('resjson',resJosn)
             setData(data.concat(resJosn.resultFoods))
-            setFoodCount(resJosn.foodcount)
+            setFoodCount()
             setIsLoading(false)
+            setRefeshing(false)
+            const maxPage = Math.ceil(resJosn.foodcount/5)
+            setMaxpage(maxPage)
+
         })
+        .catch(err=>console.log(err))
     }
     useEffect(()=>{
         setIsLoading(true)
         getData()
     },[pageCurrent])
-
+    
     const renderItem = ({item})=>{
         return(
             
             <TouchableOpacity key={item.id} 
-                onPress={()=>navigation.navigate('AddFood')}
+                // onPress={()=>navigation.navigate('AddFood')
+                // }
                 >
                     <Morph style={styles.itemContainer}>
                         <View style={styles.foodContainer}>
@@ -73,7 +86,7 @@ const ListFood = (props) =>
                 </TouchableOpacity>
         )
     }
-    renderFooter = ()=>(
+    const renderFooter = ()=>(
         isLoading?
         <View style={styles.loader}>
             <ActivityIndicator size={"large"}/>
@@ -82,11 +95,17 @@ const ListFood = (props) =>
         null
         )
     
-    handleLoadmore=()=>{
-        if(pageCurrent*limit-1 <= foodCount)
+     const handleLoadmore=()=>{
         setPageCurrent(pageCurrent+1)
         setIsLoading(true)
-    }    
+    }   
+    const handleRefresh=()=>{
+        setData([])
+        setPageCurrent(1)
+        setRefeshing(true)
+    } 
+
+
     return(
     <View style={styles.container}>
         <FlatList
@@ -95,10 +114,14 @@ const ListFood = (props) =>
             keyExtractor={(item,index)=>item._id}
             ListFooterComponent={renderFooter}
             onEndReached={()=>{
-                if(pageCurrent*limit-1 <= foodCount)
-                handleLoadmore()
+                // console.log('pageCurrent',pageCurrent)
+                // console.log('maxPage',maxPage)
+                if(pageCurrent+1 <= maxPage) handleLoadmore()
+
             }}
             onEndReachedThreshold={0}
+            onRefresh={handleRefresh}
+            refreshing={refeshing}
 
         />
     </View>

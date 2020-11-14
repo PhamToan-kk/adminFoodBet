@@ -50,6 +50,7 @@ export const FTextInput = (props) =>
         onBlur,
         fontSize,
         autoCapitalize,
+        value,
         rest
     } = props
     const [secureTextEntry, setSecureTextEntry] = useState(password);
@@ -71,6 +72,7 @@ export const FTextInput = (props) =>
             fontSize={fontSize ? fontSize: FontSizes.FONT_15}
             color={Colors.lightGreen}
             autoCapitalize={autoCapitalize}
+            value={value}
         />
         {password && (
         <Eyes
