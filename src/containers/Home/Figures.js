@@ -40,7 +40,7 @@ return(
                         {orderCount} Orders
                 </FText>
                 <FText style={styles.target}>
-                        {(orderCount/200)*100}% target 
+                        {((orderCount/200)*100).toFixed(2)}% target 
                 </FText>
             </View>
         </Morph>
@@ -54,7 +54,7 @@ return(
                             {totolMoney} $
                     </FText>
                     <FText style={styles.target}>
-                    {(totolMoney/5000)*100}% target 
+                    {((totolMoney/5000)*100).toFixed(2)}% target 
                     </FText>
                 </View>
         </Morph>

@@ -8,7 +8,7 @@ import{
 
 } from '../containers'
 import AnimatedTabBar from '@gorhom/animated-tabbar';
-import {VectorIcon} from '../components';
+import {VectorIcon,Badge} from '../components';
 import {Colors} from '../theme'
 const Tab = createBottomTabNavigator();
 
@@ -58,10 +58,15 @@ const tabs = {
       color: Colors.red_fresh,
     },
     icon: {
-      component: () => (
-        <VectorIcon FontAwesome5 name="hornbill" color={Colors.red_fresh} size={23} />
+      component: () => {
+        
+        return(
+          <>
+            <Badge iconSize={30} />
+            <VectorIcon FontAwesome5 name="hornbill" color={Colors.red_fresh} size={23} />
+          </>
 
-      ),
+      )},
       activeColor: Colors.red_fresh,
       inactiveColor: 'blue',
     },
@@ -88,7 +93,7 @@ export const TabsNavigator = () => {
       )}>
       <Tab.Screen component={Home} name={'Home'} />
       <Tab.Screen component={Foods} name={'Foods'} />
-      <Tab.Screen component={OrderList} name={'OrderList'} />
+      <Tab.Screen component={OrderList} name={'OrderList'}  options={{ tabBarBadge: 3}} />
 
     </Tab.Navigator>
   );

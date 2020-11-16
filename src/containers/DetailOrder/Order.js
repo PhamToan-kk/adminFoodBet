@@ -13,14 +13,17 @@ import {
 import { ScaledSheet, } from 'react-native-size-matters';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {OrderApi} from '../../api/orderApi'
+import {useDispatch} from 'react-redux'
 const Order = (props) => 
 {
+    const dispatch = useDispatch()
     const {item,navigation} = props
     const activeOrder = (ordername)=>{
         OrderApi.activeOrder(ordername)
         .then(()=>{
             alert('active order successful')
         })
+       
     }
     const RenderListFood = ()=>(
         <View style={{marginTop:10,       }}>

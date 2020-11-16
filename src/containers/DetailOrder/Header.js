@@ -5,13 +5,6 @@ import {Colors,FontSizes} from '../../theme'
 import { Styles } from '../../styles'
 import {
     FText ,
-    // TextInput,
-    VectorIcon,
-    Morph,
-    HeartIcon,
-    FTextInput,
-
-    MoveIcon,
 } from '../../components'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 

@@ -11,7 +11,7 @@ export const DetailOrder = (props) =>
         route
     } = props
     const {item} = route.params
-    console.log('itemm',item)
+    // console.log('itemm',item)
     return(
     <View style={styles.container}>
         <View style={styles.header}>

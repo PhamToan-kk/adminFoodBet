@@ -1,10 +1,13 @@
 import React, { memo, useMemo, useState, useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import {useSelector } from 'react-redux'
 
 const BADGE_SIZE = 15;
 
 const BadgeComponent = ({ iconSize }) => {
-  const [count, setCount] = useState(12);
+  const {count} = useSelector(state=>state.ordersNotActive)
+  // const [count, setCount] = useState(12);
+  
   const containerStyle = useMemo(
     () => ({
       ...styles.container,
@@ -17,12 +20,7 @@ const BadgeComponent = ({ iconSize }) => {
     [iconSize]
   );
 
-  useEffect(() => {
-    // const intervalId = setInterval(() => setCount(state => state + 1), 2500);
-    // return () => {
-    //   clearInterval(intervalId);
-    // };
-  }, []);
+ 
 
   return (
     <View style={containerStyle}>

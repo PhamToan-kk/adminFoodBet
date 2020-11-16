@@ -130,6 +130,10 @@ export const Colors = {
     special_gray_opacity:'rgba(169,170,172,0.5)',
     special_gray_opacity2:'rgba(169,170,172,0.1)',
 
+    backGroundLogin1:'rgba(99,184,255,0.5)',
+    backGroundLogin2:'rgba(24,116,205,0.3)',
+    backGroundLogin3:'rgba(44, 49, 75, 0.5)',
+
 
     white_opacity:'rgba(255,255,255,0.3)'
 

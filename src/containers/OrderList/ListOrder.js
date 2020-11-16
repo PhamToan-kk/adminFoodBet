@@ -17,16 +17,15 @@ import {
     MoveIcon,
 } from '../../components'
 import { OrderApi } from '../../api/orderApi'
-import { useFocusEffect } from '@react-navigation/native';
-
-
+import { useSelector,useDispatch} from 'react-redux'
+import {ReadedAllOrders} from '../../redux/actions'
 const ListOrders = (props) => 
 {
+    const dispatch = useDispatch()
     const { navigation} = props
     const [data,setData] = useState([])
     const [isLoading,setIsLoading] = useState(false)
     const [pageCurrent,setPageCurrent] = useState(1)
-    // const [orderCount,setOrderCount] = useState()
     const limit = 5
     const [maxPage,setMaxpage] = useState()
     const getData = ()=>{
@@ -49,6 +48,7 @@ const ListOrders = (props) =>
             console.log('rerendrerrrrr')
             setData([])
             setPageCurrent(1)
+            dispatch(ReadedAllOrders())
         });
       
         setIsLoading(true)

@@ -1,42 +1,30 @@
-import React, {useState} from 'react';
-import {
-  AddFood,
-  Login,
-  DetailOrder
+import React, {useEffect, useState} from 'react';
+import {AddFood, Login, DetailOrder} from '../containers';
+import {createStackNavigator} from '@react-navigation/stack';
+import {TabsNavigator} from './Tabs';
 
-  
-  } from '../containers';
-  import {createStackNavigator} from '@react-navigation/stack';
+const AuthStack = createStackNavigator();
+const MainStack = createStackNavigator();
 
-  import {TabsNavigator} from './Tabs'
-  const AuthStack = createStackNavigator();
-  const MainStack = createStackNavigator()
+export const AuthStackScreens = ({navigation}) => {
+  return (
+    <AuthStack.Navigator headerMode={'none'}>
+      <AuthStack.Screen name="Login" component={Login} />
+    </AuthStack.Navigator>
+  );
+};
 
-  export const AuthStackScreens = ({navigation}) => {
-    return (
-      <AuthStack.Navigator
-      headerMode={'none'}
-      >
-        <AuthStack.Screen name="Login" component={Login} />
-  
-      </AuthStack.Navigator>
-    );
-  };
+export const MainStackScreens = () => {
 
-
-  export const MainStackScreens = ()=>{
-    return(
-        <MainStack.Navigator
-        initialRouteName="Main"
-        screenOptions={{
-            headerShown:false
-        }}
-        >
-            <MainStack.Screen component={TabsNavigator} name={'Tabs'}/>
-            <MainStack.Screen component={AddFood} name={'AddFood'} />     
-            <MainStack.Screen component={DetailOrder} name={'DetailOrder'} />     
-
-        </MainStack.Navigator>
-    )
-}
-  
+  return (
+    <MainStack.Navigator
+      initialRouteName="Main"
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <MainStack.Screen component={TabsNavigator} name={'Tabs'} />
+      <MainStack.Screen component={AddFood} name={'AddFood'} />
+      <MainStack.Screen component={DetailOrder} name={'DetailOrder'} />
+    </MainStack.Navigator>
+  );
+};

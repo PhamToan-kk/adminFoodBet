@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
 import { Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import {ScaledSheet} from 'react-native-size-matters'
@@ -9,15 +9,21 @@ import {FText } from '../../components'
 import {FontSizes,Colors} from '../../theme'
 
 import { ScrollView } from 'react-native-gesture-handler';
-
+import {useDispatch} from 'react-redux';
+import {actGetOrderNoActive} from '../../redux/actions';
 
 
 export const Home = ({
     params,
 }) => {
-    //   useFocusEffect(()=>{
-    //     console.log('rerender home')
-    // })
+  const dispatch = useDispatch();
+  const getListNotActiveOrder = () => {
+    dispatch(actGetOrderNoActive());
+  };
+
+  useEffect(() => {
+    getListNotActiveOrder();
+  });
     return(
     <View style={styles.container}>
         <View style={{flex:1}}>

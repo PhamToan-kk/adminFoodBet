@@ -14,6 +14,10 @@ export const OrderApi = {
     getOrderInfo:()=>{
         const url = "/orders/getOrderInfo"
         return axiosClient.get(url)
+    },
+    getListOrderNotActive:()=>{
+        const url = "orders/adminGetOrderNotActive"
+        return axiosClient.get(url)
     }
     
 }

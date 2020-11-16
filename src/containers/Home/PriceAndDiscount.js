@@ -1,17 +1,17 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { Text, View ,StyleSheet,TouchableOpacity} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters'
 import {FText,Morph} from '../../components'
 import {FontSizes,Colors} from '../../theme'
 import {Styles} from '../../styles'
 import RNPickerSelect from 'react-native-picker-select';
-
+import { OtherInfoApi} from '../../api/otherInfoApi'
 
 const discountValue = 
                         [
-                            { label: '5%', value: 5/100 },
-                            { label: '10%', value: 10/100 },
-                            { label: '15%', value: 15/100 },
+                            { label: '5%', value: 5 },
+                            { label: '10%', value: 10 },
+                            { label: '15%', value: 15 },
                         ]
 
 const shipCostValue = 
@@ -21,21 +21,36 @@ const shipCostValue =
                             { label: '2$/km', value: 2 },
                         ]
 const PriceAndDiscount = (props) => {
-    const {
-        currentDiscount,
-        currentShipCost
-    } = props
+  
     const [readyDiscount,setReadyDiscount] = useState()
     const [readyShipcost,setReadyShipcost] = useState()
-    const [discount,setDiscount] = useState(10/100)
-    const [shipcost,setShipCost] = useState(1)
+
+    const [discount,setDiscount] = useState()
+    const [shipcost,setShipCost] = useState()
+    useEffect(()=>{
+        OtherInfoApi.getOtherInfo()
+        .then(res=>{
+            setDiscount(res.discountpercent)
+            setShipCost(res.shipprice)
+        })
+    },[])
+
     const setChangeDiscount = ()=>{
-        if(!readyDiscount) return
+        if(!readyDiscount) { return }
         setDiscount(readyDiscount)
+        OtherInfoApi.updateOtherInfo(readyDiscount,shipcost)
+        .then(
+            ()=>alert('update successful',discount)
+        )        
     }
     const setChangeShipCost = ()=>{
         if(!readyShipcost) return
         setShipCost(readyShipcost)
+        OtherInfoApi.updateOtherInfo(discount,readyShipcost)  
+        .then(
+            ()=>alert('update successful')
+        )           
+
     }
 
     return(
@@ -46,7 +61,7 @@ const PriceAndDiscount = (props) => {
                 <View style={styles.leftBox}>
                     <View style={styles.circle}>
                         <View style={styles.insideCircle} >
-                            <FText style={styles.value}>{discount*100}%</FText>
+                            <FText style={styles.value}>{discount}%</FText>
                         </View>
                     </View>
                 </View>
