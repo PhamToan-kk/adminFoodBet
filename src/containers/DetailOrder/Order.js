@@ -52,6 +52,16 @@ const Order = (props) =>
         <View style={styles.seperateView}/>
         <FText style={styles.normalInfo}>Total: {item.paymenttotal} $</FText>
         {
+            item.feedback?
+            <View style={styles.fbView}>
+                <FText style={styles.normalInfo}> Customer feedback: 
+                        <FText style={[styles.normalInfo,{color:Colors.lightGreen}]}>{item.feedback}</FText>
+                </FText>
+            </View>
+            :
+            null
+        }
+        {
             item.isactive? 
             null:
             <TouchableOpacity style={styles.btn}
@@ -105,6 +115,14 @@ const styles = ScaledSheet.create({
         fontSize:FontSizes.FONT_18,
         fontWeight:'500',
         color:Colors.white
+    },
+    fbView:{
+        width:'95%',
+        height:100,
+        borderRadius:10,
+        borderWidth:1,
+        borderColor:Colors.gray,
+        alignSelf:'center'
     }
 
 })

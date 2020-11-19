@@ -77,6 +77,13 @@ const ListOrders = (props) =>
                 <FText>{item.time}</FText>
                 <MoveIcon/>
             </View>
+            {
+                item.feedback?
+                <FText style={styles.fb}>Feedback</FText>
+                :
+                null
+            }
+
         </TouchableOpacity>
     )
     const renderFooter = ()=>(
@@ -147,6 +154,12 @@ const styles = ScaledSheet.create({
     orderName:{
         fontSize:FontSizes.FONT_15,
         fontWeight:'300'
+    },
+    fb:{
+        position:'absolute',
+        bottom:20,
+        right: 10,
+        color:Colors.lightGreen
     }
 })
 

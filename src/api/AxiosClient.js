@@ -3,7 +3,14 @@ import queryString from 'query-string';
 import { AsyncStorageService } from '../services/asyncStorageService'
 import Config from 'react-native-config';
 
-const baseURL = Config.BASE_URL
+// const baseURL = "http://localhost:3000"
+
+// const BASE_URL=http://192.168.3.102:3000
+
+// const baseURL = "http:10.30.40.84:3000"
+const baseURL = "http:172.20.10.2:3000"
+
+
 const axiosClient = axios.create({
   baseURL: baseURL,
   headers: {
@@ -31,9 +38,6 @@ axiosClient.interceptors.request.use(
   }
 
 );
-
-
-
 axiosClient.interceptors.response.use((response) => {
   if (response && response.data) {
     return response.data;
