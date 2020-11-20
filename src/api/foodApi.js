@@ -15,5 +15,17 @@ export const foodApi = {
             intro:intro,
             components:components,
         });
+    },
+    updateFood : (_id,name,type,price,urlImg,intro,components)=>{
+        const url = "/foods/updateFood"
+        return axiosClient.post(url,{
+            _id:_id,
+            name:name,
+            type:type,
+            price:price,
+            url:urlImg,
+            intro:intro,
+            components:components,
+        });
     }
 }

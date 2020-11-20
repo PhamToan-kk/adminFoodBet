@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {AddFood, Login, DetailOrder} from '../containers';
+import {AddFood, Login, DetailOrder,FoodDetail} from '../containers';
 import {createStackNavigator} from '@react-navigation/stack';
 import {TabsNavigator} from './Tabs';
 
@@ -25,6 +25,8 @@ export const MainStackScreens = () => {
       <MainStack.Screen component={TabsNavigator} name={'Tabs'} />
       <MainStack.Screen component={AddFood} name={'AddFood'} />
       <MainStack.Screen component={DetailOrder} name={'DetailOrder'} />
+      <MainStack.Screen component={FoodDetail} name={'FoodDetail'} />
+
     </MainStack.Navigator>
   );
 };

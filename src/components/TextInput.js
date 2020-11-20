@@ -84,7 +84,7 @@ export const TextInput = (props) => {
       <TextInputNative
 
         onChangeText={onChangeText}
-        // multiline={multiline}
+        multiline={multiline}
         placeholder={placeholder}
         placeholderTextColor={Colors.Link_Water}
         secureTextEntry={secureTextEntry}

@@ -4,5 +4,7 @@ export * from './OrderList'
 export * from './AddFood'
 export * from './Login'
 export * from './DetailOrder'
+export * from './FoodDetail'
+
 
 

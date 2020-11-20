@@ -50,8 +50,8 @@ const ListFood = (props) =>
         return(
             
             <TouchableOpacity key={item.id} 
-                // onPress={()=>navigation.navigate('AddFood')
-                // }
+                onPress={()=>navigation.navigate('FoodDetail',{item:item})
+                }
                 >
                     <Morph style={styles.itemContainer}>
                         <View style={styles.foodContainer}>
