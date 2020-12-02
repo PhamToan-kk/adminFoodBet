@@ -27,5 +27,12 @@ export const foodApi = {
             intro:intro,
             components:components,
         });
+    },
+    deleteFood : (_id)=>{
+        const url = "/foods/deleteFood"
+        return axiosClient.post(url,{
+            _id:_id,
+        });
     }
+
 }

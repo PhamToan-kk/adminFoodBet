@@ -15,7 +15,7 @@ export const ReadedAllOrders = () => {
 }
 
 
-export const InscreaseCountOrder = () => {
+export const actInscreaseCountOrder = () => {
     return{
         type:'INCREASE_COUNT_ORDER',
         payload:1

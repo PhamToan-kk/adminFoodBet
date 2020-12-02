@@ -1,7 +1,7 @@
 import React ,{useEffect}from 'react';
 import { Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import {ScaledSheet} from 'react-native-size-matters'
+import {ms, ScaledSheet} from 'react-native-size-matters'
 import Header from './Header'
 import Figures from './Figures'
 import PriceAndDiscount from './PriceAndDiscount'
@@ -10,7 +10,8 @@ import {FontSizes,Colors} from '../../theme'
 
 import { ScrollView } from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
-import {actGetOrderNoActive} from '../../redux/actions';
+import {actGetOrderNoActive,actInscreaseCountOrder} from '../../redux/actions';
+import useSocket from 'use-socket.io-client';
 
 
 export const Home = ({
@@ -24,6 +25,16 @@ export const Home = ({
   useEffect(() => {
     getListNotActiveOrder();
   });
+  const [socket] = useSocket("ws://localhost:3000");
+    socket.connect();
+    useEffect(()=>{
+        // socket.on("server_send_order_admin",(msg)=>{
+            socket.emit('admin_send','tao la admin')
+            socket.on('server_send_order_admin',(msg)=>{
+                dispatch(actInscreaseCountOrder())
+            })
+        // });   
+     })
     return(
     <View style={styles.container}>
         <View style={{flex:1}}>

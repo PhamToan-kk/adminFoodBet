@@ -10,6 +10,8 @@ import{
 import AnimatedTabBar from '@gorhom/animated-tabbar';
 import {VectorIcon,Badge} from '../components';
 import {Colors} from '../theme'
+
+
 const Tab = createBottomTabNavigator();
 
 const tabs = {
@@ -86,9 +88,7 @@ export const TabsNavigator = () => {
         <AnimatedTabBar
           tabs={tabs}
           {...props}
-          // style={{borderRadius:15,marginBottom:10,marginHorizontal:10,alignItems:'center'}}
           iconSize={24}
-          // itemOuterSpace	={15}
         />
       )}>
       <Tab.Screen component={Home} name={'Home'} />

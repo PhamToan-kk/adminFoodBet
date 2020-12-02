@@ -1,5 +1,5 @@
 import React ,{useState}from 'react';
-import { Text, View ,Image,TextInput,StyleSheet} from 'react-native';
+import { Text, View ,Image,TextInput,StyleSheet,Alert} from 'react-native';
 import { ScaledSheet, } from 'react-native-size-matters';
 import {Colors,FontSizes} from '../../theme'
 import { Styles } from '../../styles'
@@ -87,15 +87,39 @@ const FormUp = (props) =>
         }else{
             foodApi.updateFood(_id,name,type,price,defaultUp,intro,components)
             .then((data)=>{
-                console.log('data',data)
-                alert('Update food successful')
+                // console.log('data',data)
+                Alert.alert(
+                    "Notification",
+                    "Update food successful",
+                    [
+                    
+                    { text: "OK", }
+                    ],
+                    { cancelable: false }
+                );           
             })
             .catch(err=>{
                 console.log(err)
             })
         }
-        
-        
+    }
+    const deleteFood = ()=>{
+        foodApi.deleteFood(_id)
+        .then((data)=>{
+            // console.log('data',data)
+            Alert.alert(
+                "Notification",
+                "Delete food successful",
+                [
+                
+                { text: "OK", }
+                ],
+                { cancelable: false }
+            );    
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
     return(
     <View style={styles.container}>
@@ -169,6 +193,9 @@ const FormUp = (props) =>
                     }
                     />
 
+                    <TouchableOpacity style={styles.btn} onPress={deleteFood}>
+                        <FText size={FontSizes.FONT_17} weight="500" color={Colors.white}>DELETE FOOD</FText>
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.btn} onPress={updateFood}>
                         <FText size={FontSizes.FONT_17} weight="500" color={Colors.white}>UPDATE FOOD</FText>
                     </TouchableOpacity>
@@ -213,9 +240,9 @@ const styles = ScaledSheet.create({
     },
     btn:{
         width:'85%',
-        height:'60@s',
+        height:'50@s',
         backgroundColor:Colors.red_fresh,
-        marginTop:50,
+        marginTop:20,
         alignSelf:'center',
         borderRadius:10,
         ...Styles.center_center

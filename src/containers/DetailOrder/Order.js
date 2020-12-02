@@ -27,7 +27,7 @@ const Order = (props) =>
     }
     const RenderListFood = ()=>(
         <View style={{marginTop:10,       }}>
-            <FText style={styles.normalInfo}>List Food :</FText>
+            <FText  style={[styles.normalInfo,{ fontWeight:'800'}]}>List Food :</FText>
             {item.order.map((food,index)=>(
                 <View style={styles.rowFood} key={index}>
                     <FText style={styles.insideRow}>{food.namefood} :</FText>
@@ -48,13 +48,17 @@ const Order = (props) =>
         <FText style={styles.normalInfo}>Address: {item.address}</FText>
         <FText style={styles.normalInfo}>Phone: {item.phone}</FText>
         <FText style={styles.normalInfo}>Time: {item.time}</FText>
+        <FText style={styles.normalInfo}>Note: 
+            <FText style={[styles.normalInfo,{color:Colors.red_fresh}]}>{item.note}</FText>
+        </FText>
+
         <RenderListFood/>
         <View style={styles.seperateView}/>
         <FText style={styles.normalInfo}>Total: {item.paymenttotal} $</FText>
         {
             item.feedback?
             <View style={styles.fbView}>
-                <FText style={styles.normalInfo}> Customer feedback: 
+                <FText style={styles.normalInfo}> Feedback: 
                         <FText style={[styles.normalInfo,{color:Colors.lightGreen}]}>{item.feedback}</FText>
                 </FText>
             </View>
