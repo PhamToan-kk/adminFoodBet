@@ -5,16 +5,13 @@ import {Colors,FontSizes} from '../../theme'
 import { Styles } from '../../styles'
 import {
     FText ,
-    // TextInput,
     VectorIcon,
     Morph,
     HeartIcon,
     FTextInput,
-
     MoveIcon,
 } from '../../components'
 import RNPickerSelect from 'react-native-picker-select';
-
 import ImagePicker from 'react-native-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {foodApi } from '../../api/foodApi'
@@ -38,10 +35,11 @@ const FormUp = (props) =>
 {
     
     
-    const {item} = props
-    console.log('item',item)
+    const {
+        item,
+        navigation
+    } = props
     const [_id,setId] = useState(item._id)
-
     const [name,setName] = useState(item.name)
     const [type,setType] = useState(item.type)
     const [price,setPrice] = useState(item.price.toString())
@@ -104,22 +102,30 @@ const FormUp = (props) =>
         }
     }
     const deleteFood = ()=>{
-        foodApi.deleteFood(_id)
-        .then((data)=>{
-            // console.log('data',data)
+        const handleDelete = ()=>{
+            foodApi.deleteFood(_id)
+            .then((data)=>{
+                console.log('data',data)
+               navigation.goBack()
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+            }
             Alert.alert(
-                "Notification",
-                "Delete food successful",
+                "System will delete food",
+                "Are you sure",
                 [
-                
-                { text: "OK", }
+                  
+                  {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                  },
+                  { text: "OK", onPress: () => handleDelete() }
                 ],
                 { cancelable: false }
-            );    
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+              );
     }
     return(
     <View style={styles.container}>

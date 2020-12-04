@@ -27,7 +27,7 @@ return(
             <Header navigation={navigation}/>
         </View>
         <View style={styles.form}>
-            <FormUp item={item}/>
+            <FormUp item={item} navigation={navigation}/>
         </View>
 
     </View>

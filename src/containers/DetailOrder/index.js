@@ -18,7 +18,7 @@ export const DetailOrder = (props) =>
             <Header navigation={navigation} />
         </View>
         <View style={styles.listOrders}>
-            <Order item={item} />
+            <Order item={item} navigation={navigation} />
         </View>
     </View>
 );

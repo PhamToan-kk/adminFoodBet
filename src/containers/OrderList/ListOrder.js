@@ -28,6 +28,8 @@ const ListOrders = (props) =>
     const [pageCurrent,setPageCurrent] = useState(1)
     const limit = 5
     const [maxPage,setMaxpage] = useState()
+    const [refeshing,setRefeshing] = useState(false)
+
     const getData = ()=>{
         const params ={
             page:pageCurrent,
@@ -37,12 +39,20 @@ const ListOrders = (props) =>
         .then((resJosn)=> {
             setData(data.concat(resJosn.resultOrders))
             setIsLoading(false)
+            setRefeshing(false)
             const maxPage = Math.ceil(resJosn.orderCount/5)
             setMaxpage(maxPage)
 
         })
         .catch(err=>console.log(err))
     }
+
+    const handleRefresh=()=>{
+        setData([])
+        setRefeshing(true)
+        setPageCurrent(1)
+    } 
+
     useEffect(()=>{
         navigation.addListener('focus', () => {
             console.log('rerendrerrrrr')
@@ -50,13 +60,12 @@ const ListOrders = (props) =>
             setPageCurrent(1)
             dispatch(ReadedAllOrders())
         });
-      
         setIsLoading(true)
         getData()
     },[pageCurrent])
     const handleLoadmore=()=>{
-        setPageCurrent(pageCurrent+1)
         setIsLoading(true)
+        setPageCurrent(pageCurrent+1)
     } 
 
     const renderItem = ({item})=>(
@@ -111,6 +120,8 @@ const ListOrders = (props) =>
             onEndReachedThreshold={0}
             initialScrollIndex={0}
             ItemSeparatorComponent={()=> (<View style={{height:3,backgroundColor:'white'}}/>)}
+            onRefresh={handleRefresh}
+            refreshing={refeshing}
         />
     </View>
 );

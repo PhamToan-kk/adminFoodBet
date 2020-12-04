@@ -18,7 +18,7 @@ export const foodApi = {
     },
     updateFood : (_id,name,type,price,urlImg,intro,components)=>{
         const url = "/foods/updateFood"
-        return axiosClient.post(url,{
+        return axiosClient.patch(url,{
             _id:_id,
             name:name,
             type:type,

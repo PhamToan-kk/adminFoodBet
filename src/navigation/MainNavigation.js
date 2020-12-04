@@ -7,7 +7,7 @@ import {store} from '../redux/store'
 import {useSelector} from 'react-redux'
 const AppNavigator = ({
 }) => {
-    // console.log('store',store.getState())
+    console.log('store initial',store.getState())
     const role = useSelector(state=>state.userInfo.role)   
 
     return(

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View,Alert } from 'react-native';
 import {Colors,FontSizes} from '../../theme'
 import { Styles } from '../../styles'
 import {
@@ -9,6 +9,7 @@ import {
     HeartIcon,
     FTextInput,
     MoveIcon,
+    alert
 } from '../../components'
 import { ScaledSheet, } from 'react-native-size-matters';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -21,8 +22,15 @@ const Order = (props) =>
     const activeOrder = (ordername)=>{
         OrderApi.activeOrder(ordername)
         .then(()=>{
-            alert('active order successful')
-        })
+            Alert.alert(
+                "Active order ",
+                "by FoodBet",
+                [
+                  
+                  { text: "OK", onPress: () => navigation.goBack() }
+                ],
+
+              );        })
        
     }
     const RenderListFood = ()=>(

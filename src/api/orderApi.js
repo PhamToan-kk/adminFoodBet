@@ -7,7 +7,7 @@ export const OrderApi = {
     },
     activeOrder:(orderName)=>{
         const url = "/orders/activeOrder"
-        return axiosClient.post(url,{
+        return axiosClient.patch(url,{
             orderName:orderName
         });
     },

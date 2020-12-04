@@ -1,5 +1,5 @@
 import React ,{useState}from 'react';
-import { Text, View ,Image,TextInput,StyleSheet} from 'react-native';
+import { Text, View ,Image,TextInput,StyleSheet,Alert} from 'react-native';
 import { ScaledSheet, } from 'react-native-size-matters';
 import {Colors,FontSizes} from '../../theme'
 import { Styles } from '../../styles'
